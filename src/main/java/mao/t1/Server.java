@@ -51,10 +51,14 @@ public class Server
                 IpSubnetFilterRule("147.11.68.152", 16, IpFilterRuleType.REJECT);
         IpSubnetFilterRule ipSubnetFilterRule5 = new
                 IpSubnetFilterRule("113.221.0.1", 16, IpFilterRuleType.REJECT);
-
+        //白名单
+        IpSubnetFilterRule ipSubnetFilterRule6 = new
+                IpSubnetFilterRule("113.221.202.104", 16, IpFilterRuleType.ACCEPT);
         //基于ip的过滤器，可以自定义哪些ip或者ip范围允许通过或者被阻止，他是一个共享的handle
         //构造方法：public RuleBasedIpFilter(IpFilterRule... rules)
         RuleBasedIpFilter ruleBasedIpFilter = new RuleBasedIpFilter(
+                //ipSubnetFilterRule6要加在ipSubnetFilterRule5的前面，不然不生效
+                ipSubnetFilterRule6,
                 ipSubnetFilterRule1,
                 ipSubnetFilterRule2,
                 ipSubnetFilterRule3,
